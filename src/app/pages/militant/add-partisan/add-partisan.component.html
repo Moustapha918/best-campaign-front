@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Ajouter un partisan</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+
+    <mat-form-field class="mr-2" appearance="outline">
+      <input matInput placeholder="NNI" [(ngModel)]="nni">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <button (click)="findPartisan()" class="button" mat-stroked-button color="primary">
+      <mat-icon>add</mat-icon>
+      Chercher
+    </button>
+  </div>
+
+  <div>
+    <mat-label *ngIf="foundPartisan">Voulez vous confirmer l'ajout de <span class="bold">{{foundPartisan.name}}</span> à vos partisans?</mat-label>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button [disabled]="!foundPartisan" mat-button [mat-dialog-close]="foundPartisan" cdkFocusInitial>Confirmer</button>
+</mat-dialog-actions>
