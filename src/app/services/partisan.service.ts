@@ -22,6 +22,7 @@ export class PartisanService{
   }
 
   findUserPartisans(): Observable<PartisanModel[]> {
-    return this.httpClient.get<PartisanModel[]>("http://localhost:8080/partisans")
+    const currentUser = "ahmed";
+    return this.httpClient.get<PartisanModel[]>(`http://localhost:8080/partisans/${currentUser}`)
   }
 }
