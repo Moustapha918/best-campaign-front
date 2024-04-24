@@ -1,9 +1,19 @@
-<div class="container">
-  <div class="title">
-    BEST CAMPAIGN
-  </div>
-  <router-outlet />
-</div>
-<div class="footer">
-  This is the footer.
-</div>
+
+<amplify-authenticator>
+  <ng-template
+    amplifySlot="authenticated"
+    let-user="user"
+    let-signOut="signOut"
+  >
+    <div class="container">
+      <div class="title">
+        BEST CAMPAIGN
+        <button (click)="signOut()">Sign Out</button>
+      </div>
+      <router-outlet />
+    </div>
+    <div class="footer">
+      This is the footer.
+    </div>
+  </ng-template>
+</amplify-authenticator>

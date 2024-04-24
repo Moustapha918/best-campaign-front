@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bestcampaignfront-dev-89b51-authRole",
+      "UnauthRoleArn": "arn:aws:iam::638832956065:role/amplify-bestcampaignfront-dev-89b51-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::638832956065:role/amplify-bestcampaignfront-dev-89b51-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-bestcampaignfront-dev-89b51-deployment",
+      "UnauthRoleName": "amplify-bestcampaignfront-dev-89b51-unauthRole",
+      "StackName": "amplify-bestcampaignfront-dev-89b51",
+      "StackId": "arn:aws:cloudformation:eu-west-3:638832956065:stack/amplify-bestcampaignfront-dev-89b51/eb60bcd0-01a2-11ef-95bd-0a28f19c3d5d",
+      "AmplifyAppId": "d1mrxemgp8xzv7"
+    },
+    "categories": {
+      "api": {
+        "bestcampaignfront": {}
+      },
+      "auth": {
+        "bestcampaignfrontfebdb4b7": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1mrxemgp8xzv7",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}
