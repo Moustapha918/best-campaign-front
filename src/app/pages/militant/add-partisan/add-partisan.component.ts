@@ -4,7 +4,7 @@ import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {MatInput} from "@angular/material/input";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIcon} from "@angular/material/icon";
 import {PartisanService} from "../../../services/partisan.service";
 import {PartisanModel} from "../../../datamodels/partisan.model";
@@ -44,7 +44,7 @@ export class AddPartisanComponent {
   findPartisan() {
     if (this.nni) {
       this.partisanService.findByNni(this.nni).subscribe(
-        partisan => this.foundPartisan = partisan,
+        partisan => this.foundPartisan = partisan!,
       )
     }
   }

@@ -28,11 +28,19 @@ export const getMilitant = /* GraphQL */ `query GetMilitant($id: ID!) {
   APITypes.GetMilitantQuery
 >;
 export const listMilitants = /* GraphQL */ `query ListMilitants(
+  $id: ID
   $filter: ModelMilitantFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listMilitants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listMilitants(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       name
@@ -59,7 +67,6 @@ export const getPartisan = /* GraphQL */ `query GetPartisan($id: ID!) {
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -82,6 +89,7 @@ export const getPartisan = /* GraphQL */ `query GetPartisan($id: ID!) {
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
@@ -90,11 +98,19 @@ export const getPartisan = /* GraphQL */ `query GetPartisan($id: ID!) {
   APITypes.GetPartisanQuery
 >;
 export const listPartisans = /* GraphQL */ `query ListPartisans(
+  $id: ID
   $filter: ModelPartisanFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listPartisans(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listPartisans(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       first_name
@@ -103,10 +119,10 @@ export const listPartisans = /* GraphQL */ `query ListPartisans(
       place_of_birth
       number_in_office
       genre
-      office_id
       createdAt
       updatedAt
       militantPartisansId
+      partisanOfficeId
       __typename
     }
     nextToken
@@ -131,11 +147,19 @@ export const getOffice = /* GraphQL */ `query GetOffice($id: ID!) {
 }
 ` as GeneratedQuery<APITypes.GetOfficeQueryVariables, APITypes.GetOfficeQuery>;
 export const listOffices = /* GraphQL */ `query ListOffices(
+  $id: ID
   $filter: ModelOfficeFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listOffices(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listOffices(
+    id: $id
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
       id
       label

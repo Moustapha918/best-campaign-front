@@ -86,12 +86,12 @@ export type Partisan = {
   place_of_birth?: string | null,
   number_in_office?: string | null,
   genre?: string | null,
-  office_id?: string | null,
   militant?: Militant | null,
   office?: Office | null,
   createdAt: string,
   updatedAt: string,
   militantPartisansId?: string | null,
+  partisanOfficeId?: string | null,
 };
 
 export type Office = {
@@ -124,8 +124,8 @@ export type CreatePartisanInput = {
   place_of_birth?: string | null,
   number_in_office?: string | null,
   genre?: string | null,
-  office_id?: string | null,
   militantPartisansId?: string | null,
+  partisanOfficeId?: string | null,
 };
 
 export type ModelPartisanConditionInput = {
@@ -135,13 +135,13 @@ export type ModelPartisanConditionInput = {
   place_of_birth?: ModelStringInput | null,
   number_in_office?: ModelStringInput | null,
   genre?: ModelStringInput | null,
-  office_id?: ModelStringInput | null,
   and?: Array< ModelPartisanConditionInput | null > | null,
   or?: Array< ModelPartisanConditionInput | null > | null,
   not?: ModelPartisanConditionInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   militantPartisansId?: ModelIDInput | null,
+  partisanOfficeId?: ModelIDInput | null,
 };
 
 export type ModelIDInput = {
@@ -168,8 +168,8 @@ export type UpdatePartisanInput = {
   place_of_birth?: string | null,
   number_in_office?: string | null,
   genre?: string | null,
-  office_id?: string | null,
   militantPartisansId?: string | null,
+  partisanOfficeId?: string | null,
 };
 
 export type DeletePartisanInput = {
@@ -220,6 +220,12 @@ export type ModelMilitantFilterInput = {
   not?: ModelMilitantFilterInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelMilitantConnection = {
   __typename: "ModelMilitantConnection",
   items:  Array<Militant | null >,
@@ -234,13 +240,13 @@ export type ModelPartisanFilterInput = {
   place_of_birth?: ModelStringInput | null,
   number_in_office?: ModelStringInput | null,
   genre?: ModelStringInput | null,
-  office_id?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelPartisanFilterInput | null > | null,
   or?: Array< ModelPartisanFilterInput | null > | null,
   not?: ModelPartisanFilterInput | null,
   militantPartisansId?: ModelIDInput | null,
+  partisanOfficeId?: ModelIDInput | null,
 };
 
 export type ModelOfficeFilterInput = {
@@ -312,11 +318,11 @@ export type ModelSubscriptionPartisanFilterInput = {
   place_of_birth?: ModelSubscriptionStringInput | null,
   number_in_office?: ModelSubscriptionStringInput | null,
   genre?: ModelSubscriptionStringInput | null,
-  office_id?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionPartisanFilterInput | null > | null,
   or?: Array< ModelSubscriptionPartisanFilterInput | null > | null,
+  partisanOfficeId?: ModelSubscriptionIDInput | null,
 };
 
 export type ModelSubscriptionOfficeFilterInput = {
@@ -409,7 +415,6 @@ export type CreatePartisanMutation = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -432,6 +437,7 @@ export type CreatePartisanMutation = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
@@ -450,7 +456,6 @@ export type UpdatePartisanMutation = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -473,6 +478,7 @@ export type UpdatePartisanMutation = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
@@ -491,7 +497,6 @@ export type DeletePartisanMutation = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -514,6 +519,7 @@ export type DeletePartisanMutation = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
@@ -592,9 +598,11 @@ export type GetMilitantQuery = {
 };
 
 export type ListMilitantsQueryVariables = {
+  id?: string | null,
   filter?: ModelMilitantFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListMilitantsQuery = {
@@ -627,7 +635,6 @@ export type GetPartisanQuery = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -650,13 +657,16 @@ export type GetPartisanQuery = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
 export type ListPartisansQueryVariables = {
+  id?: string | null,
   filter?: ModelPartisanFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListPartisansQuery = {
@@ -671,10 +681,10 @@ export type ListPartisansQuery = {
       place_of_birth?: string | null,
       number_in_office?: string | null,
       genre?: string | null,
-      office_id?: string | null,
       createdAt: string,
       updatedAt: string,
       militantPartisansId?: string | null,
+      partisanOfficeId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -698,9 +708,11 @@ export type GetOfficeQuery = {
 };
 
 export type ListOfficesQueryVariables = {
+  id?: string | null,
   filter?: ModelOfficeFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListOfficesQuery = {
@@ -794,7 +806,6 @@ export type OnCreatePartisanSubscription = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -817,6 +828,7 @@ export type OnCreatePartisanSubscription = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
@@ -834,7 +846,6 @@ export type OnUpdatePartisanSubscription = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -857,6 +868,7 @@ export type OnUpdatePartisanSubscription = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 
@@ -874,7 +886,6 @@ export type OnDeletePartisanSubscription = {
     place_of_birth?: string | null,
     number_in_office?: string | null,
     genre?: string | null,
-    office_id?: string | null,
     militant?:  {
       __typename: "Militant",
       id: string,
@@ -897,6 +908,7 @@ export type OnDeletePartisanSubscription = {
     createdAt: string,
     updatedAt: string,
     militantPartisansId?: string | null,
+    partisanOfficeId?: string | null,
   } | null,
 };
 

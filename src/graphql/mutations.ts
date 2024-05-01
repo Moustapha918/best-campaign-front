@@ -86,7 +86,6 @@ export const createPartisan = /* GraphQL */ `mutation CreatePartisan(
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -109,6 +108,7 @@ export const createPartisan = /* GraphQL */ `mutation CreatePartisan(
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
@@ -128,7 +128,6 @@ export const updatePartisan = /* GraphQL */ `mutation UpdatePartisan(
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -151,6 +150,7 @@ export const updatePartisan = /* GraphQL */ `mutation UpdatePartisan(
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
@@ -170,7 +170,6 @@ export const deletePartisan = /* GraphQL */ `mutation DeletePartisan(
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -193,6 +192,7 @@ export const deletePartisan = /* GraphQL */ `mutation DeletePartisan(
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }

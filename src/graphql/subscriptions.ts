@@ -74,7 +74,6 @@ export const onCreatePartisan = /* GraphQL */ `subscription OnCreatePartisan($fi
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -97,6 +96,7 @@ export const onCreatePartisan = /* GraphQL */ `subscription OnCreatePartisan($fi
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
@@ -113,7 +113,6 @@ export const onUpdatePartisan = /* GraphQL */ `subscription OnUpdatePartisan($fi
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -136,6 +135,7 @@ export const onUpdatePartisan = /* GraphQL */ `subscription OnUpdatePartisan($fi
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
@@ -152,7 +152,6 @@ export const onDeletePartisan = /* GraphQL */ `subscription OnDeletePartisan($fi
     place_of_birth
     number_in_office
     genre
-    office_id
     militant {
       id
       name
@@ -175,6 +174,7 @@ export const onDeletePartisan = /* GraphQL */ `subscription OnDeletePartisan($fi
     createdAt
     updatedAt
     militantPartisansId
+    partisanOfficeId
     __typename
   }
 }
