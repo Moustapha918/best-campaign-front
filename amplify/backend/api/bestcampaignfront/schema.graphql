@@ -6,7 +6,8 @@ type Militant @model {
   id: ID! @primaryKey
   name: String!
   nni: String!
-  phone: String
+  email: String!
+  phone: String!
   partisans: [Partisan] @hasMany
 }
 

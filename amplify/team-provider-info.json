@@ -16,7 +16,8 @@
         "bestcampaignfront": {}
       },
       "auth": {
-        "bestcampaignfrontfebdb4b7": {}
+        "bestcampaignfrontfebdb4b7": {},
+        "userPoolGroups": {}
       },
       "hosting": {
         "amplifyhosting": {

@@ -13,6 +13,7 @@ export const onCreateMilitant = /* GraphQL */ `subscription OnCreateMilitant($fi
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -32,6 +33,7 @@ export const onUpdateMilitant = /* GraphQL */ `subscription OnUpdateMilitant($fi
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -51,6 +53,7 @@ export const onDeleteMilitant = /* GraphQL */ `subscription OnDeleteMilitant($fi
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -78,6 +81,7 @@ export const onCreatePartisan = /* GraphQL */ `subscription OnCreatePartisan($fi
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt
@@ -117,6 +121,7 @@ export const onUpdatePartisan = /* GraphQL */ `subscription OnUpdatePartisan($fi
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt
@@ -156,6 +161,7 @@ export const onDeletePartisan = /* GraphQL */ `subscription OnDeletePartisan($fi
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt

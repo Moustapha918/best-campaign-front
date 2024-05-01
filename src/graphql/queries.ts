@@ -13,6 +13,7 @@ export const getMilitant = /* GraphQL */ `query GetMilitant($id: ID!) {
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -45,6 +46,7 @@ export const listMilitants = /* GraphQL */ `query ListMilitants(
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt
@@ -71,6 +73,7 @@ export const getPartisan = /* GraphQL */ `query GetPartisan($id: ID!) {
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt

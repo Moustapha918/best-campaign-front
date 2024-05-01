@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
-import * as mutations from '../graphql/mutations'
 import {generateClient} from "aws-amplify/api";
 
 @Component({
@@ -21,10 +20,10 @@ export class AppComponent implements OnInit{
   }
 
   async ngOnInit(): Promise<void> {
-    const res = await this.client.graphql({
+    /*const res = await this.client.graphql({
       query: mutations.updatePartisan,
 
     });
-    console.log(res)
+    console.log(res)*/
   }
 }

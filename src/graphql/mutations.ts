@@ -16,6 +16,7 @@ export const createMilitant = /* GraphQL */ `mutation CreateMilitant(
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -38,6 +39,7 @@ export const updateMilitant = /* GraphQL */ `mutation UpdateMilitant(
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -60,6 +62,7 @@ export const deleteMilitant = /* GraphQL */ `mutation DeleteMilitant(
     id
     name
     nni
+    email
     phone
     partisans {
       nextToken
@@ -90,6 +93,7 @@ export const createPartisan = /* GraphQL */ `mutation CreatePartisan(
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt
@@ -132,6 +136,7 @@ export const updatePartisan = /* GraphQL */ `mutation UpdatePartisan(
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt
@@ -174,6 +179,7 @@ export const deletePartisan = /* GraphQL */ `mutation DeletePartisan(
       id
       name
       nni
+      email
       phone
       createdAt
       updatedAt

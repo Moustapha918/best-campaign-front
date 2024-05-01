@@ -14,6 +14,8 @@ import {PartisanModel} from "../../../datamodels/partisan.model";
 
 import {type Client, generateClient} from 'aws-amplify/api';
 import * as queries from '../../../../graphql/queries';
+import {UserService} from "../../../services/user.service";
+import {getCurrentUser} from "aws-amplify/auth";
 
 /**
  * @title Table with pagination
@@ -35,23 +37,40 @@ export class PartisansComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  constructor(public dialog: MatDialog, private partisanService: PartisanService) {
+  constructor(public dialog: MatDialog,
+              private partisanService: PartisanService,
+              private userService: UserService) {
     this.client = generateClient();
   }
 
   async ngAfterViewInit() {
+    console.log(this.userService.userEmail)
+    const variables = {
+      filter: {
+        email: {
+          eq: (await getCurrentUser()).signInDetails?.loginId
+        }
+      }
+    };
     try {
+      const  militantResponse = await this.client.graphql({
+        query: queries.listMilitants,
+        variables: variables,
+      });
+
+      console.log(militantResponse.data.listMilitants.items)
       const response = await this.client.graphql({
         query: queries.listPartisans
       });
       this.dataSource.data = response.data.listPartisans.items.map(
         item => new PartisanModel(
-          item.nni, `${item.first_name} ${item.last_name}`, item.createdAt, item.createdAt
+          item.nni, `${item.first_name} ${item.last_name}`, item.partisanOfficeId!, item.createdAt
         ))
     } catch (e) {
       console.log('error fetching partisans', e);
     }
     this.dataSource.paginator = this.paginator || null;
+    console.log(this.userService.userEmail)
   }
 
   addPartisan() {

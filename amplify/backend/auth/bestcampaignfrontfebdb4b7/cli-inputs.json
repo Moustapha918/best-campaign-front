@@ -1,8 +1,6 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "bestcampaignfrontfebdb4b7_identitypool_febdb4b7",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "bestcafebdb4b7",
     "userPoolName": "bestcampaignfrontfebdb4b7_userpool_febdb4b7",
     "autoVerifiedAttributes": [
@@ -26,24 +24,57 @@
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
+      "given_name",
+      "name",
+      "phone_number",
       "email"
     ],
     "userpoolClientReadAttributes": [
-      "email"
+      "email",
+      "given_name",
+      "name",
+      "phone_number",
+      "email_verified",
+      "phone_number_verified"
     ],
     "userpoolClientLambdaRole": "bestcafebdb4b7_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "febdb4b7",
     "resourceName": "bestcampaignfrontfebdb4b7",
-    "authSelections": "identityPoolAndUserPool",
+    "authSelections": "userPoolOnly",
     "useDefault": "default",
     "usernameAttributes": [
       "email, phone_number"
     ],
     "triggers": {},
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+      "admins",
+      "militants"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "userPoolGroups": true,
+    "adminQueries": true,
+    "hostedUI": false,
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "authProviders": []
   }
 }
