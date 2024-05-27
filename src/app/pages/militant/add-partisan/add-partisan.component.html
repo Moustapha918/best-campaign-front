@@ -13,10 +13,10 @@
   </div>
 
   <div>
-    <mat-label *ngIf="foundPartisan">Voulez vous confirmer l'ajout de <span class="bold">{{foundPartisan.name}}</span> à vos partisans?</mat-label>
+    <mat-label *ngIf="foundPartisan">Voulez vous confirmer l'ajout de <span class="bold">{{foundPartisan.fullName}}</span> à vos partisans?</mat-label>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Annuler</button>
-  <button [disabled]="!foundPartisan" mat-button [mat-dialog-close]="foundPartisan" cdkFocusInitial>Confirmer</button>
+  <button (click)="closeWithoutAdding()" mat-button mat-dialog-close>Annuler</button>
+  <button [disabled]="!foundPartisan" mat-button (click)="addPartisanToConnectedMilitant()" cdkFocusInitial>Confirmer</button>
 </mat-dialog-actions>

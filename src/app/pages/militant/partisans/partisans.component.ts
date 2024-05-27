@@ -48,10 +48,9 @@ export class PartisansComponent implements AfterViewInit {
       .open(AddPartisanComponent, {minWidth: '300px'});
 
     dialogRef.afterClosed().subscribe(result => {
-      this.partisanService.addToMilitant(result as PartisanModel)
-        .subscribe(res => {
-          this.dataSource.data.push(result)
-        })
+      this.militantService.getConnectedUserPartisans().subscribe(
+        partisans => this.dataSource.data = partisans
+      );
     });
   }
 }

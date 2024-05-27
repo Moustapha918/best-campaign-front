@@ -1,7 +1,8 @@
 import {Routes} from '@angular/router';
-import {HomeComponent} from "./pages/militant/home/home.component";
+import {HomeComponent} from "./pages/home/home.component";
 import {PartisansComponent} from "./pages/militant/partisans/partisans.component";
 import {ImportPartisansComponent} from "./pages/militant/import-partisans/import-partisans.component";
+import {ElectionMonitoringComponent} from "./pages/election-monitoring/election-monitoring.component";
 
 export const routes: Routes = [
 
@@ -16,5 +17,9 @@ export const routes: Routes = [
   {
     path: "partisans/import",
     component: ImportPartisansComponent
+  },
+  {
+    path: "monitoring",
+    component: ElectionMonitoringComponent
   }
 ];

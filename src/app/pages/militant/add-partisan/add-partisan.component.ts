@@ -1,5 +1,12 @@
-import {Component} from '@angular/core';
-import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import {Component, Inject} from '@angular/core';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
@@ -9,6 +16,7 @@ import {MatIcon} from "@angular/material/icon";
 import {PartisanService} from "../../../services/partisan.service";
 import {PartisanModel} from "../../../datamodels/partisan.model";
 import {NgIf} from "@angular/common";
+import {MilitantService} from "../../../services/militant.service";
 
 @Component({
   selector: 'app-add-partisan',
@@ -35,7 +43,10 @@ import {NgIf} from "@angular/common";
 })
 export class AddPartisanComponent {
 
-  constructor(private partisanService: PartisanService) {
+  constructor(private partisanService: PartisanService,
+              private militantService: MilitantService,
+              public dialogRef: MatDialogRef<AddPartisanComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: PartisanModel) {
   }
 
   nni: string = "";
@@ -47,5 +58,17 @@ export class AddPartisanComponent {
         partisan => this.foundPartisan = partisan!,
       )
     }
+  }
+
+  addPartisanToConnectedMilitant() {
+    this.militantService.addPartisan(this.foundPartisan as PartisanModel)
+      .subscribe(res => {
+        console.log("addPartisanToConnectedMilitant : " + res)
+        this.dialogRef.close()
+      })
+  }
+
+  closeWithoutAdding() {
+    this.dialogRef.close()
   }
 }

@@ -1,10 +1,15 @@
 <form class="search-bar">
   <mat-form-field appearance="outline" class="search-form-field">
-    <input matInput placeholder="NNI" >
+    <input matInput placeholder="NNI">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
-  <button (click)="addPartisan()" class="button mr-2" mat-stroked-button color="primary"><mat-icon>add</mat-icon> Ajouter</button>
-  <button routerLink="import" class="button mr-2" mat-stroked-button color="primary">Importer <mat-icon>file_upload</mat-icon></button>
+  <button (click)="addPartisan()" class="button mr-2" mat-stroked-button color="primary">
+    <mat-icon>add</mat-icon>
+    Ajouter
+  </button>
+  <button routerLink="import" class="button mr-2" mat-stroked-button color="primary">Importer
+    <mat-icon>file_upload</mat-icon>
+  </button>
 </form>
 
 <div class="mat-elevation-z8">
@@ -19,19 +24,19 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nom complet</th>
-      <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.fullName }}</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="center">
       <th mat-header-cell *matHeaderCellDef> Centre de vote</th>
-      <td mat-cell *matCellDef="let element"> {{ element.center }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.office.center }}</td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="office">
       <th mat-header-cell *matHeaderCellDef> Bureau de vote</th>
-      <td mat-cell *matCellDef="let element"> {{ element.office }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.office.label }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

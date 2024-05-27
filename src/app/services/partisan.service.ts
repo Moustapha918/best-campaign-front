@@ -1,25 +1,24 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {PartisanModel} from "../datamodels/partisan.model";
-import {HttpClient} from "@angular/common/http";
-import {Client, generateClient} from "aws-amplify/api";
+import {HttpClient} from "@angular/common/http"
+import {environment} from "../../environnements/environnement";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartisanService {
-  public client: Client;
+  private apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {
-    this.client = generateClient();
   }
 
   findByNni(nni: string): Observable<PartisanModel> {
-    return this.httpClient.get<PartisanModel>(`http://url${nni}`)
+    return this.httpClient.get<PartisanModel>(`${this.apiUrl}/partisans/${nni}`)
   }
 
   addToMilitant(partisan: PartisanModel): Observable<PartisanModel> {
-    return this.httpClient.post<PartisanModel>("http://url_create_partisan", partisan)
+    return this.httpClient.put<PartisanModel>(`${this.apiUrl}/partisans`, partisan)
   }
 }
