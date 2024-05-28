@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill">
+  <mat-label>Select an Elector</mat-label>
+  <mat-select [formControl]="electorControl">
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="chercher un electeur" (keyup)="filterElectors($event.target)">
+      </mat-form-field>
+    @for (elector of filteredElectors; track elector) {
+      <mat-option [value]="elector"> {{ elector.name }} - {{ elector.number }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

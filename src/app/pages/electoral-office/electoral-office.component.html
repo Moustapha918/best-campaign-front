@@ -1,0 +1,21 @@
+<div class="electoral-office-grid">
+  <mat-grid-list cols="3" gutterSize="16px">
+
+    @for (office of electoralOffices; track office) {
+      <mat-grid-tile>
+        <mat-card class="office-card" (click)="selectOffice(office)">
+          <mat-card-header>
+            <div mat-card-avatar class="office-icon">
+              <mat-icon>account_balance</mat-icon>
+            </div>
+            <mat-card-title>{{ office.label }}</mat-card-title>
+            <mat-card-subtitle>{{ office.center }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ office.commune }}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>

@@ -1,15 +1,5 @@
 import {MilitantModel} from "./militant.model";
-
-class OfficeModel {
-  constructor(commune: string, label: string, center: string) {
-    this.commune = commune
-    this.label = label
-    this.center = center
-  }
-  commune: string
-  label: string
-  center: string
-}
+import {OfficeModel} from "./officeModel";
 
 export class PartisanModel {
 
