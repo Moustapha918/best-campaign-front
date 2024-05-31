@@ -20,22 +20,28 @@
 
   </mat-step>
   <mat-step label="Bureau">
-    <app-electoral-office (validatedOffice)="selectOffice($event)"  [electoralOffices]=selectedCenterOffices></app-electoral-office>
+    <app-electoral-office (validatedOffice)="selectOffice($event)"  [electoralOffices]=selectedCenterOffices>
+
+    </app-electoral-office>
   </mat-step>
 
   <mat-step label="Electeur">
     <div class="stepper-container">
-      <app-find-elector-in-office></app-find-elector-in-office>
-      <button mat-button matStepperNext>Suivant</button>
+      <app-find-elector-in-office class="full-width"
+                                  [filteredElectors]="selectedOfficeElectors"
+                                  [electors]="selectedOfficeElectors"
+                                  (selectElector)="selectElector($event)"
+
+      >
+      </app-find-elector-in-office>
+      <button mat-button (click)="declarePartisanVote()" >Valider le vote</button>
     </div>
 
   </mat-step>
     <mat-step>
     <ng-template matStepLabel>Recapitilatif</ng-template>
-    <p>valider vote.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+      <app-election-report>
+
+      </app-election-report>
   </mat-step>
 </mat-stepper>

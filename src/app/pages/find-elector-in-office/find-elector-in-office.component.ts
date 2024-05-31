@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {PartisanModel} from "../../datamodels/partisan.model";
+import {PreventSpaceActionOnSelect} from "../../components/prevent-space-action-on-select.directive";
 
 interface Elector {
   name: string;
@@ -16,23 +18,32 @@ interface Elector {
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PreventSpaceActionOnSelect
   ],
   templateUrl: './find-elector-in-office.component.html',
   styleUrl: './find-elector-in-office.component.css'
 })
 export class FindElectorInOfficeComponent implements OnInit {
-  electorControl = new FormControl<Elector | null>(null);
-  electors: Elector[] = [
-    { name: 'John Doe', number: '123' },
-    { name: 'Jane Smith', number: '456' },
-    { name: 'Emily Johnson', number: '789' },
-    // Add more electors as needed
-  ];
-  filteredElectors: Elector[] = [];
+
+  @Input()
+  electors: PartisanModel[] = [];
+  @Input()
+  filteredElectors: PartisanModel[] = [];
+
+  @Output()
+  selectElector=  new EventEmitter<PartisanModel>();
+  electorControl = new FormControl<PartisanModel | null>(null);
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.filteredElectors = this.electors;
+
+    this.electorControl.valueChanges.subscribe(
+      value => value ? this.selectElector.emit(value) : null
+    );
   }
 
   filterElectors(searchValue: any): void {
@@ -41,8 +52,8 @@ export class FindElectorInOfficeComponent implements OnInit {
       return;
     }
     this.filteredElectors = this.electors.filter(elector =>
-      elector.name.toLowerCase().includes(searchValue.value.toLowerCase()) ||
-      elector.number.includes(searchValue)
+      elector.fullName.toLowerCase().includes(searchValue.value.toLowerCase()) ||
+      elector.numberOnOfficeRegister == searchValue.value
     );
   }
 }

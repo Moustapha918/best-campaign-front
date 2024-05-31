@@ -17,3 +17,7 @@ mat-select-trigger {
   display: flex;
   align-items: center;
 }
+
+.full-width{
+  width: 100%;
+}

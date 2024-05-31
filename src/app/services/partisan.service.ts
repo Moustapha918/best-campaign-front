@@ -5,6 +5,9 @@ import {HttpClient} from "@angular/common/http"
 import {environment} from "../../environnements/environnement";
 
 
+class OfficeElectoralReport {
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +20,11 @@ export class PartisanService {
   findByNni(nni: string): Observable<PartisanModel> {
     return this.httpClient.get<PartisanModel>(`${this.apiUrl}/partisans/${nni}`)
   }
+  findElectorsByOffice(officeLabel: string): Observable<PartisanModel[]> {
+    return this.httpClient.get<PartisanModel[]>(`${this.apiUrl}/offices/${officeLabel}/electors`)
+  }
 
-  addToMilitant(partisan: PartisanModel): Observable<PartisanModel> {
-    return this.httpClient.put<PartisanModel>(`${this.apiUrl}/partisans`, partisan)
+  vote(electorToVote: PartisanModel): Observable<OfficeElectoralReport> {
+    return this.httpClient.put<OfficeElectoralReport>(`${this.apiUrl}/partisans/${electorToVote?.nni}/vote`, electorToVote)
   }
 }

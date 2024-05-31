@@ -11,6 +11,9 @@ import {CenterService} from "../../services/center.service";
 import {OfficeModel} from "../../datamodels/officeModel";
 import {ElectoralOfficeComponent} from "../electoral-office/electoral-office.component";
 import {FindElectorInOfficeComponent} from "../find-elector-in-office/find-elector-in-office.component";
+import {PartisanModel} from "../../datamodels/partisan.model";
+import {PartisanService} from "../../services/partisan.service";
+import {ElectionReportComponent} from "../election-report/election-report.component";
 
 @Component({
   selector: 'app-election-monitoring',
@@ -29,7 +32,8 @@ import {FindElectorInOfficeComponent} from "../find-elector-in-office/find-elect
     MatOption,
     MatSelect,
     ElectoralOfficeComponent,
-    FindElectorInOfficeComponent
+    FindElectorInOfficeComponent,
+    ElectionReportComponent
   ],
   templateUrl: './election-monitoring.component.html',
   styleUrl: './election-monitoring.component.css'
@@ -37,7 +41,11 @@ import {FindElectorInOfficeComponent} from "../find-elector-in-office/find-elect
 export class ElectionMonitoringComponent implements OnInit {
   voteCenters: VoteCenter[] = [];
   selectedCenterOffices: OfficeModel[] = [];
-  @ViewChild('stepper') private myStepper: MatStepper | undefined;
+  selectedOfficeElectors: PartisanModel[] = [];
+  electorToVote: PartisanModel | null = null;
+
+  @ViewChild('stepper')
+  private myStepper: MatStepper | undefined;
 
   voteFormGroup = this._formBuilder.group({
     center: ['', Validators.required],
@@ -45,7 +53,8 @@ export class ElectionMonitoringComponent implements OnInit {
 
 
   constructor(private _formBuilder: FormBuilder,
-              private centerService: CenterService) {
+              private centerService: CenterService,
+              private partisanService: PartisanService) {
   }
 
   ngOnInit(): void {
@@ -63,8 +72,21 @@ export class ElectionMonitoringComponent implements OnInit {
     )
   }
 
-  selectOffice($event: OfficeModel) {
-    console.log($event);
-    this.myStepper?.next()
+  selectOffice(office: OfficeModel) {
+    this.partisanService.findElectorsByOffice(office.label)
+      .subscribe(electors => {
+        this.selectedOfficeElectors = electors
+        this.myStepper?.next()
+      })
+  }
+
+  selectElector(selectedElector: PartisanModel) {
+    this.electorToVote = selectedElector
+  }
+
+  declarePartisanVote() {
+    this.electorToVote && this.partisanService.vote(this.electorToVote).subscribe(
+      data => console.log(data)
+    )
   }
 }
