@@ -14,7 +14,6 @@ import {FindElectorInOfficeComponent} from "../find-elector-in-office/find-elect
 import {PartisanModel} from "../../datamodels/partisan.model";
 import {PartisanService} from "../../services/partisan.service";
 import {ElectionReportComponent} from "../election-report/election-report.component";
-import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-election-monitoring',
@@ -55,7 +54,6 @@ export class ElectionMonitoringComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
               private centerService: CenterService,
-              private userService: UserService,
               private partisanService: PartisanService) {
   }
 

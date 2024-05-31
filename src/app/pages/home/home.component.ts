@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 import {RouterLink} from "@angular/router";
-import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-home',
@@ -17,15 +16,10 @@ import {UserService} from "../../services/user.service";
 })
 export class HomeComponent implements OnInit{
 
-   constructor(private userService: UserService) {
+   constructor() {
   }
 
   async ngOnInit() {
-
-    const a = await this.userService.currentAuthenticatedUser();
-    console.log("-------------" + a)
   }
-
-
 
 }
