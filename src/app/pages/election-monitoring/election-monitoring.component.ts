@@ -14,6 +14,7 @@ import {FindElectorInOfficeComponent} from "../find-elector-in-office/find-elect
 import {PartisanModel} from "../../datamodels/partisan.model";
 import {PartisanService} from "../../services/partisan.service";
 import {ElectionReportComponent} from "../election-report/election-report.component";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-election-monitoring',
@@ -54,10 +55,11 @@ export class ElectionMonitoringComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
               private centerService: CenterService,
+              private userService: UserService,
               private partisanService: PartisanService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
     this.centerService.getCenters().subscribe(
       data => this.voteCenters = data
@@ -86,7 +88,10 @@ export class ElectionMonitoringComponent implements OnInit {
 
   declarePartisanVote() {
     this.electorToVote && this.partisanService.vote(this.electorToVote).subscribe(
-      data => console.log(data)
+      data => {
+        this.electorToVote?.office && this.selectOffice(this.electorToVote?.office)
+        console.log(data)
+      }
     )
   }
 }
