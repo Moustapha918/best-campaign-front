@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
+import {UserService} from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,10 @@ export class AppComponent implements OnInit {
   title = 'best-campaign-front';
 
 
-  constructor() {
+  constructor(private  userService: UserService) {
   }
 
   async ngOnInit() {
+    this.userService.currentSession()
   }
 }

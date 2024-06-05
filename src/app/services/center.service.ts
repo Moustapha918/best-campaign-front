@@ -11,12 +11,10 @@ import {OfficeModel} from "../datamodels/officeModel";
 export class CenterService {
 
   private apiUrl = environment.apiUrl;
-  private idMilitant: number = 1;
-
   constructor(private httpClient: HttpClient) { }
 
   getCenters(): Observable<VoteCenter[]> {
-    return this.httpClient.get<VoteCenter[]>(`${this.apiUrl}/militants/${(this.idMilitant)}/centers`)
+    return this.httpClient.get<VoteCenter[]>(`${this.apiUrl}/militant/centers`)
   }
 
   getOffices(center: String | null): Observable<OfficeModel[]> {

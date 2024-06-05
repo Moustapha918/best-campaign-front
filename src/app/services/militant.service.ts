@@ -9,18 +9,15 @@ import {environment} from "../../environnements/environnement";
 })
 export class MilitantService {
   private apiUrl = environment.apiUrl;
-  private idMilitant: number = 1;
-
   constructor(private httpClient: HttpClient) { }
 
   getConnectedUserPartisans(): Observable<PartisanModel[]> {
 
-    const loggedUser = "1"
-    return this.httpClient.get<PartisanModel[]>(`${this.apiUrl}/militants/${loggedUser}/partisans`)
+    return this.httpClient.get<PartisanModel[]>(`${this.apiUrl}/militant/partisans`)
 
   }
 
   addPartisan(partisan: PartisanModel): Observable<PartisanModel> {
-    return this.httpClient.put<PartisanModel>(`${this.apiUrl}/militants/${(this.idMilitant)}/attach`, partisan)
+    return this.httpClient.put<PartisanModel>(`${this.apiUrl}/militant/attach`, partisan)
   }
 }
