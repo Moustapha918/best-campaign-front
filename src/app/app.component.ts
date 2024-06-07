@@ -3,11 +3,13 @@ import {RouterOutlet} from '@angular/router';
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
 import {UserService} from "./services/user.service";
+import {SpinnerComponent} from "./components/spinner/spinner.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggle, AmplifyAuthenticatorModule],
+  imports: [
+    RouterOutlet, MatSlideToggle, AmplifyAuthenticatorModule, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
