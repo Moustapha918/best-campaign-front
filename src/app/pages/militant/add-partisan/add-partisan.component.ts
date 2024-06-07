@@ -63,7 +63,6 @@ export class AddPartisanComponent {
   addPartisanToConnectedMilitant() {
     this.militantService.addPartisan(this.foundPartisan as PartisanModel)
       .subscribe(res => {
-        console.log("addPartisanToConnectedMilitant : " + res)
         this.dialogRef.close()
       })
   }

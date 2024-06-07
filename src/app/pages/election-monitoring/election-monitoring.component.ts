@@ -88,7 +88,6 @@ export class ElectionMonitoringComponent implements OnInit {
     this.electorToVote && this.partisanService.vote(this.electorToVote).subscribe(
       data => {
         this.electorToVote?.office && this.selectOffice(this.electorToVote?.office)
-        console.log(data)
       }
     )
   }
