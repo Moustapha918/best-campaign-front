@@ -5,8 +5,14 @@
     let-signOut="signOut"
   >
     <div class="container">
-      <div class="title">
-        BEST CAMPAIGN
+      <div class="header">
+        <a routerLink="/"><img [src]="'assets/logo.png'" alt="logo" width="120" height="120"/> </a>
+        <h1>CAMPAGNE 2024 </h1>
+
+        <button (click)="signOut()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>logout</mat-icon>
+        </button>
+
       </div>
       <app-spinner></app-spinner>
       <router-outlet/>
@@ -14,6 +20,6 @@
     <div class="footer">
       MSI copyright &copy; 2024
     </div>
-    <button (click)="signOut()">Sign Out</button>
+
   </ng-template>
 </amplify-authenticator>

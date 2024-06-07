@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FileUploadService} from "../../services/file-upload.service";
@@ -10,6 +10,7 @@ import {MatList, MatListItem} from "@angular/material/list";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
+import {UploadReport} from "../../datamodels/upload-report";
 
 @Component({
   selector: 'app-file-upload',
@@ -40,6 +41,8 @@ export class FileUploadComponent implements OnInit {
 
   fileName = 'Select File';
   fileInfos?: Observable<any>;
+  @Output()
+  report = new EventEmitter<UploadReport>()
 
   constructor(private uploadService: FileUploadService) {
   }
@@ -65,11 +68,12 @@ export class FileUploadComponent implements OnInit {
 
       this.uploadService.upload(this.currentFile).subscribe(
         {
-          next: (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
+          next: (response: any) => {
+            this.report.next(response.body)
+            if (response.type === HttpEventType.UploadProgress) {
+              this.progress = Math.round(100 * response.loaded / response.total);
+            } else if (response instanceof HttpResponse) {
+              this.message = response.body.message;
               this.fileInfos = this.uploadService.getFiles();
             }
           },
