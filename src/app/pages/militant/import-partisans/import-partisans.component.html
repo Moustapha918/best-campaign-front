@@ -1,14 +1,12 @@
 <app-file-upload (report)="displayReport($event)"></app-file-upload>
-
-
 <p *ngIf="successElements.length"> Félicitation {{ successElements.length }} partisans ont été ajouté avec succes a
   votre liste</p>
 <div *ngIf="failedElements.length">
-  <p> {{ failedElements.length }} partisans n'ont pas pas être traité</p>
+  <p>  {{ failedElements.length }} partisans n'ont pas pas être traité</p>
   <mat-list>
     @for (partisan of failedElements; track partisan) {
       <p>
-        <mat-icon fontIcon="error"></mat-icon>
+        <mat-icon>close</mat-icon>
         {{ partisan.fullName }} {{ partisan.nni }}
       </p>
 

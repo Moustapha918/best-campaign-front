@@ -3,6 +3,10 @@
   max-width: 80%;
   margin: 0 auto;
   padding: 20px;
+  background-image: url('../assets/biram.jpeg');
+  background-size: 400px 250px;
+  background-position: top 50px center;
+  background-repeat: no-repeat;
 }
 .header {
   align-items: center;

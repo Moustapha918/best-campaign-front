@@ -41,25 +41,17 @@ export class ElectionReportComponent {
     this.chartOptions = {
       series: [
         {
-          name: "PRODUCT A",
-          data: [44, 55, 41, 67, 22, 43]
+          name: "Nos votes",
+          data: [150, 1200, 3000, 2000, 940]
         },
         {
-          name: "PRODUCT B",
-          data: [13, 23, 20, 8, 13, 27]
-        },
-        {
-          name: "PRODUCT C",
-          data: [11, 17, 15, 15, 21, 14]
-        },
-        {
-          name: "PRODUCT D",
-          data: [21, 7, 25, 13, 22, 8]
+          name: "Autres",
+          data: [60, 900, 1000, 450, 40]
         }
       ],
       chart: {
         type: "bar",
-        height: 350,
+        height: 400,
         stacked: true,
         toolbar: {
           show: true
@@ -88,12 +80,11 @@ export class ElectionReportComponent {
       xaxis: {
         type: "category",
         categories: [
-          "01/2011",
-          "02/2011",
-          "03/2011",
-          "04/2011",
-          "05/2011",
-          "06/2011"
+          "Bureau Lycée 1",
+          "Bureau Lycée 2",
+          "Bureau Lycée 3",
+          "Bureau Lycée 4",
+          "Bureau Lycée 5",
         ]
       },
       legend: {

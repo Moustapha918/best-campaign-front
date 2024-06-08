@@ -5,6 +5,7 @@ import {MatList, MatListItem} from "@angular/material/list";
 import {PartisanModel} from "../../../datamodels/partisan.model";
 import {NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import {MatMiniFabButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-import-partisans',
@@ -14,7 +15,8 @@ import {MatIcon} from "@angular/material/icon";
     MatList,
     MatListItem,
     NgIf,
-    MatIcon
+    MatIcon,
+    MatMiniFabButton
   ],
   templateUrl: './import-partisans.component.html',
   styleUrl: './import-partisans.component.css'
